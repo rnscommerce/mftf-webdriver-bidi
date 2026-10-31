@@ -2,7 +2,7 @@
   "name": "rnscommerce/mftf-webdriver-bidi",
   "description": "MFTF's MagentoWebDriver with its page waits answered by WebDriver BiDi readiness, through codeception-module-webdriver-bidi.",
   "type": "library",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "repositories": [
     {
       "type": "vcs",
