@@ -1,0 +1,12 @@
+actor: ReadinessTester
+modules:
+    enabled:
+        - \Rnscommerce\Mftf\BiDi\MagentoWebDriver
+        - \Rnscommerce\Codeception\WebDriverBiDi\WebDriverBiDi:
+              wait_before_actions:
+                  - fillSecretField
+                  - conditionalClick
+                  - rapidClick
+                  - searchAndMultiSelectOption
+                  - selectMultipleOptions
+                  - closeAdminNotification

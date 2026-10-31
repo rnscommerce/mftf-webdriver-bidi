@@ -1,0 +1,25 @@
+namespace: Rnscommerce\Mftf\BiDi\Tests\Integration\Project
+support_namespace: Support
+paths:
+    tests: .
+    output: _output
+    data: Support/Data
+    support: Support
+    envs: _envs
+settings:
+    colors: false
+# MFTF's MagentoWebDriver attaches a failed test's page to its Allure report.
+extensions:
+    enabled:
+        - Qameta\Allure\Codeception\AllureCodeception
+    config:
+        Qameta\Allure\Codeception\AllureCodeception:
+            outputDirectory: allure-results
+# ChromeTest overrides the driver, the browser and the fixtures' url.
+modules:
+    config:
+        \Rnscommerce\Mftf\BiDi\MagentoWebDriver:
+            url: http://127.0.0.1/
+            browser: chrome
+            path: /
+            pageload_timeout: 10

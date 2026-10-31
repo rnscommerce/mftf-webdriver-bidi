@@ -1,0 +1,4 @@
+actor: FallbackTester
+modules:
+    enabled:
+        - \Rnscommerce\Mftf\BiDi\MagentoWebDriver

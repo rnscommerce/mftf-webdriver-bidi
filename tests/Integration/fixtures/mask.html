@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>mask</title>
+<style>
+  .loading-mask { display: none; position: fixed; inset: 0; background: rgb(0 0 0 / 20%); }
+</style>
+<button id="load">Load</button>
+<p id="result">waiting</p>
+<div class="loading-mask"></div>
+<script>
+  // What MFTF's waitForAjaxLoad reads of jQuery: the number of its requests in flight.
+  window.jQuery = { active: 0 };
+  const params = new URLSearchParams(location.search);
+  const mask = document.querySelector('.loading-mask');
+  const result = document.getElementById('result');
+  const load = () => {
+    jQuery.active++;
+    mask.style.display = 'block';
+    result.textContent = 'loading';
+    const request = new XMLHttpRequest();
+    request.open('GET', 'slow.php?ms=' + (params.get('ms') ?? 800));
+    request.onloadend = () => {
+      jQuery.active--;
+      result.textContent = request.responseText;
+      setTimeout(() => { mask.style.display = 'none'; }, Number(params.get('linger') ?? 0));
+    };
+    request.send();
+  };
+  document.getElementById('load').addEventListener('click', load);
+  load();
+</script>
