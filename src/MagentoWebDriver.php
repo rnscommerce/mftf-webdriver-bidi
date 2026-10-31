@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rnscommerce\Mftf\BiDi;
 
+use Facebook\WebDriver\Exception\TimeoutException;
 use Magento\FunctionalTestingFramework\Module\MagentoWebDriver as MftfWebDriver;
 use Rnscommerce\Codeception\WebDriverBiDi\WebDriverBiDi;
 
@@ -36,7 +37,13 @@ class MagentoWebDriver extends MftfWebDriver
             parent::waitForAjaxLoad($timeout);
             return;
         }
-        $bidi->waitForPageReady($this->pageLoadTimeout($timeout));
+        $timeout = $this->pageLoadTimeout($timeout);
+        try {
+            $bidi->waitForPageReady($timeout);
+        } catch (TimeoutException) {
+            // MFTF's own waitForAjaxLoad never fails a test; it waits out the timeout and carries on.
+            $this->debug("The page was still busy after {$timeout} seconds, carrying on");
+        }
     }
 
     /**
