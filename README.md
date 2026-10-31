@@ -1,5 +1,7 @@
 # mftf-webdriver-bidi
 
+**Superseded.** A subclass in place of `MagentoWebDriver` breaks every lookup of that module by name, in MFTF's suite classes and Magento's own MFTF helpers among them. MFTF Studio patches `MagentoWebDriver` itself in the MFTF it carries instead.
+
 MFTF's `MagentoWebDriver` with its page waits answered by WebDriver BiDi, through
 [rnscommerce/codeception-module-webdriver-bidi](https://github.com/rnscommerce/codeception-module-webdriver-bidi).
 
